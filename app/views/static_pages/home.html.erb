@@ -1,7 +1,14 @@
-<% provide(:title, 'Home') %>
-    <h1>Samich</h1>
-    <p>
-      This is the home page for the
-      <a href="http://localhost:3000/static_pages/home/">Samich</a>
-      Torque / Maui GUI Application.
-    </p>
+<div class="center hero-unit">
+  <h1>Welcome to the Samich App</h1>
+
+  <h2>
+    This is the home page for the
+    <%= link_to "Samich", root_path %>
+    Torque / Maui GUI Application.
+  </h2>
+
+  <%= link_to "Cluster Sign Up!", signup_path, class: "btn btn-large btn-primary" %>
+</div>
+
+<%= link_to image_tag("samich_logo_large.png", alt: "Samich"), root_path %>
+
