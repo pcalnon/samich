@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Group do
 
   before do
-    @group = Group.new(name: "ittc", primary_investigator: "Perry Alexander", department: "EECS", office: "240 Nichols Hall", phone: "785-864-7715") 
+    @group = Group.new(name: "foo", primary_investigator: "Foo Bar Bas", department: "EECS", office: "240 Nichols Hall", phone: "785-864-7715") 
   end
 
   subject { @group }

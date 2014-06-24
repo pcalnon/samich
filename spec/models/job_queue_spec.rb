@@ -3,7 +3,7 @@ require 'spec_helper'
 describe JobQueue do
 
   before do
-    @job_queue = JobQueue.new(name: "default", description: "The default queue for jobs run in the ACF cluster.", walltime_default: "03:00:00:00", walltime_minimum: "00:00:00:01", walltime_maximum: "07:00:00:00", memory_default: "2000M", memory_maximum: "132G", cores_default: "1", cores_maximum: "20")
+    @job_queue = JobQueue.new(name: "foo", description: "The foo queue is where jobs go to die.", walltime_default: "03:00:00:00", walltime_minimum: "00:00:00:01", walltime_maximum: "07:00:00:00", memory_default: "2000M", memory_maximum: "132G", cores_default: "1", cores_maximum: "20")
   end
 
   subject { @job_queue }
