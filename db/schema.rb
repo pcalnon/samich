@@ -11,7 +11,57 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140623181412) do
+ActiveRecord::Schema.define(version: 20140624200237) do
+
+  create_table "groups", force: true do |t|
+    t.string   "name"
+    t.string   "primary_investigator"
+    t.string   "department"
+    t.string   "office"
+    t.string   "phone"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "groups", ["name"], name: "index_groups_on_name", unique: true
+
+  create_table "job_queues", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "walltime_default"
+    t.string   "walltime_minimum"
+    t.string   "walltime_maximum"
+    t.string   "memory_default"
+    t.string   "memory_maximum"
+    t.string   "cores_default"
+    t.string   "cores_maximum"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "job_queues", ["name"], name: "index_job_queues_on_name", unique: true
+
+  create_table "jobs", force: true do |t|
+    t.integer  "job_id"
+    t.integer  "user_id"
+    t.integer  "queue_id"
+    t.string   "name"
+    t.string   "nodes_requested"
+    t.integer  "cores_requested"
+    t.string   "memory_requested"
+    t.datetime "walltime_requested"
+    t.string   "submit_flags"
+    t.string   "node_list"
+    t.string   "nodes_used"
+    t.integer  "cores_used"
+    t.string   "memory_used"
+    t.datetime "walltime_used"
+    t.datetime "submit_time"
+    t.datetime "start_time"
+    t.datetime "completion_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name"
