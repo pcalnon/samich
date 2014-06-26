@@ -5,6 +5,7 @@ class JobQueuesController < ApplicationController
   end
 
   def new
+    @job_queue = JobQueue.new
   end
 
 end

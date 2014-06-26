@@ -1,1 +1,4 @@
-<%= @job_queues.name %>, <%= @job_queues.description %>, <%= @job_queues.walltime_default %>, <%= @job_queues.walltime_minimum %>, <%= @job_queues.walltime_maximum %>, <%= @job_queues.memory_default %>, <%= @job_queues.memory_maximum %>, <%= @job_queues.cores_default %>, <%= @job_queues.cores_maximum %>
+<% provide(:title, @job_queue.name) %>
+<h1><%= @job_queue.name %></h1>
+
+<%= @job_queue.name %>, <%= @job_queue.description %>, <%= @job_queue.walltime_default %>, <%= @job_queue.walltime_minimum %>, <%= @job_queue.walltime_maximum %>, <%= @job_queue.memory_default %>, <%= @job_queue.memory_maximum %>, <%= @job_queue.cores_default %>, <%= @job_queue.cores_maximum %>

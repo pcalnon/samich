@@ -1,1 +1,14 @@
-<%= @job.job_id %>, <%= @job.user_id %>, <%= @job.queue_id %>, <%= @job.name %>, <%= @job.nodes_requested %>, <%= @job.cores_requested %>, <%= @job.memory_requested %>, <%= @job.walltime_requested %>, <%= @job.submit_flags %>, <%= @job.node_list %>, <%= @job.nodes_used %>, <%= @job.cores_used %>, <%= @job.memory_used %>, <%= @job.walltime_used %>, <%= @job.submit_time %>, <%= @job.start_time %>, <%= @job.completion_time %>
+<% provide(:title, @job.job_id) %>
+<h1>Job ID:  <%= @job.job_id %></h1>
+<h3><%= @job.name %></h3>
+<%= @job.job_id %>, 
+<%= @job.user_id %>, 
+<%= @job.queue_id %>, 
+<%= @job.name %>, 
+<%= @job.nodes_requested %>, <%= @job.cores_requested %>, <%= @job.memory_requested %>, <%= @job.walltime_requested %>, 
+<%= @job.submit_flags %>, 
+<%= @job.node_list %>, 
+<%= @job.nodes_used %>, <%= @job.cores_used %>, <%= @job.memory_used %>, <%= @job.walltime_used %>, 
+<%= @job.submit_time %>, 
+<%= @job.start_time %>, 
+<%= @job.completion_time %>

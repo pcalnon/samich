@@ -1,2 +1,42 @@
-<h1>JobQueues#new</h1>
-<p>Find me in app/views/job_queues/new.html.erb</p>
+<% provide(:title, 'Create Job Queue') %>
+<h1>Create Job Queue</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@job_queue) do |f| %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :description %>
+      <%= f.text_field :description %>
+
+      <%= f.label :walltime_default %>
+      <%= f.text_field :walltime_default %>
+
+      <%= f.label :walltime_minimum %>
+      <%= f.text_field :walltime_minimum %>
+
+      <%= f.label :walltime_maximum %>
+      <%= f.text_field :walltime_maximum %>
+
+      <%= f.label :memory_default %>
+      <%= f.text_field :memory_default %>
+
+      <%= f.label :memory_maximum %>
+      <%= f.text_field :memory_maximum %>
+
+      <%= f.label :cores_default %>
+      <%= f.text_field :cores_default %>
+
+      <%= f.label :cores_maximum %>
+      <%= f.text_field :cores_maximum %>
+
+      <%= f.submit "Create a Job Queue", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
+

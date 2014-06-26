@@ -1,1 +1,5 @@
-<%= @groups.name %>, <%= @groups.primary_investigator %>, <%= @groups.department %>, <%= @groups.office %>, <%= @groups.phone %>
+<% provide(:title, @group.name) %>
+<h1><%= @group.name %></h1>
+
+
+<%= @group.name %>, <%= @group.primary_investigator %>, <%= @group.department %>, <%= @group.office %>, <%= @group.phone %>

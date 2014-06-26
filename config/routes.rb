@@ -1,10 +1,16 @@
 Rails.application.routes.draw do
   resources :job_queues
   resources :groups
-  resources :jobs
   resources :users
+  resources :jobs
+  #
   root  'static_pages#home'
+  #
   match '/signup', to: 'users#new', via: 'get'
+  match '/create_job', to: 'jobs#new', via: 'get'
+  match '/create_group', to: 'groups#new', via: 'get'
+  match '/create_job_queue', to: 'job_queues#new', via: 'get'
+  #
   match '/help', to: 'static_pages#help', via: 'get'
   match '/about', to: 'static_pages#about', via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
