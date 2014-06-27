@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20140624200237) do
     t.string   "completion_time"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "attribute_requested"
   end
 
   create_table "users", force: true do |t|

@@ -1,12 +1,10 @@
-<% provide(:title, 'Create Job Queue') %>
-<h1>Create Job Queue</h1>
+<% provide(:title, 'New Job Queue') %>
+<h1>New Job Queue</h1>
 
 <div class="row">
   <div class="span6 offset3">
     <%= form_for(@job_queue) do |f| %>
-
-      <%= f.label :name %>
-      <%= f.text_field :name %>
+      <%= render 'shared/job_queue_error_messages' %>
 
       <%= f.label :name %>
       <%= f.text_field :name %>
@@ -35,7 +33,7 @@
       <%= f.label :cores_maximum %>
       <%= f.text_field :cores_maximum %>
 
-      <%= f.submit "Create a Job Queue", class: "btn btn-large btn-primary" %>
+      <%= f.submit "New Job Queue", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>
 </div>

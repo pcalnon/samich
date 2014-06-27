@@ -4,6 +4,8 @@
 <div class="row">
   <div class="span6 offset3">
     <%= form_for(@job) do |f| %>
+      <%= render 'shared/job_error_messages' %>
+
 
       <%= f.label :job_id %>
       <%= f.text_field :job_id %>
@@ -23,6 +25,9 @@
 
       <%= f.label :cores_requested %>
       <%= f.number_field :cores_requested %>
+
+      <%= f.label :attribute_requested %>
+      <%= f.number_field :attribute_requested %>
 
       <%= f.label :memory_requested %>
       <%= f.text_field :memory_requested %>

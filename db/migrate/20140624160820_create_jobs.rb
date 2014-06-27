@@ -7,6 +7,7 @@ class CreateJobs < ActiveRecord::Migration
       t.string  :name
       t.string  :nodes_requested
       t.integer :cores_requested
+      t.string  :attribute_requested
       t.string  :memory_requested
       t.string  :walltime_requested
       t.string  :submit_flags

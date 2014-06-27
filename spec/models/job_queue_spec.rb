@@ -61,19 +61,19 @@ describe JobQueue do
     it { should_not be_valid }
   end
 
-  describe "when memory_maximum is not present" do
-    before { @job_queue.memory_maximum = " " }
-    it { should_not be_valid }
-  end
+#  describe "when memory_maximum is not present" do
+#    before { @job_queue.memory_maximum = " " }
+#    it { should_not be_valid }
+#  end
 
   describe "when cores_default is not present" do
     before { @job_queue.cores_default = " " }
     it { should_not be_valid }
   end
 
-  describe "when cores_maximum is not present" do
-    before { @job_queue.cores_maximum = " " }
-    it { should_not be_valid }
-  end
+#  describe "when cores_maximum is not present" do
+#    before { @job_queue.cores_maximum = " " }
+#    it { should_not be_valid }
+#  end
 
 end

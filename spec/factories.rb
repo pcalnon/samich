@@ -23,6 +23,7 @@ FactoryGirl.define do
     name                  "STDIN"
     nodes_requested       "1"
     cores_requested       "1"
+    attribute_requested  " "
     memory_requested      "100M"
     walltime_requested    "30:00:00"
     submit_flags          " "

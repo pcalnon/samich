@@ -9,7 +9,7 @@ class JobsController < ApplicationController
   end
 
   def create
-    @job = User.new(job_params)
+    @job = Job.new(job_params)
     if @job.save
       flash[:success] = "Congratulations, you have created a new Job! Take another bite of the Samich!"
       redirect_to @job
@@ -18,8 +18,9 @@ class JobsController < ApplicationController
     end
   end
 
-  def job_params
-    params.require(:job).permit(:job_id, :user_id, :queue_id, :name, :nodes_requested, :cores_requested, :memory_requested, :walltime_requested, :submit_flags, :node_list, :submit_time)
-  end
+  private
+    def job_params
+      params.require(:job).permit(:job_id, :user_id, :queue_id, :name, :nodes_requested, :cores_requested, :attribute_requested, :memory_requested, :walltime_requested, :submit_flags, :node_list, :submit_time)
+    end
 
 end
