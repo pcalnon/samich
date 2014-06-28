@@ -1,5 +1,5 @@
-class Job < ActiveRecord::Base
-#  validates(:job_id, presence: true, uniqueness: true)
+class JobStatus < ActiveRecord::Base
+  validates(:job_id, presence: true, uniqueness: true)
   validates(:user_id, presence: true)
   validates(:queue_id, presence: true)
   validates(:name, presence: true)

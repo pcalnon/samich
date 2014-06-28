@@ -38,9 +38,18 @@ describe "Job pages" do
     let(:submit) { "New Job" }
 
     describe "with invalid information" do
+
       it "should not create a job" do
         expect { click_button submit }.not_to change(Job, :count)
       end
+
+      describe "after submission" do
+        before { click_button submit }
+
+        it { should have_title('Submit Job') }
+        it { should have_content('error') }
+      end
+
     end
 
     describe "with valid information" do
@@ -74,6 +83,15 @@ describe "Job pages" do
       it "should create a job" do
         expect { click_button submit }.to change(Job, :count).by(1)
       end
+
+      describe "after saving the job" do
+        before { click_button submit }
+        let(:job) {Job.find_by(job_id: '5884110') }
+
+        it { should have_title(job.job_id) }
+        it { should have_selector('div.alert.alert-success', text: 'Congratulations') }
+      end
+
 
     end
 

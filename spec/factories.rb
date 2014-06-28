@@ -9,7 +9,7 @@ FactoryGirl.define do
   end
 
   factory :group do
-    name                  "ImLab"
+    name                  "Im Lab"
     primary_investigator  "Wonpil Im"
     department            "Molecular Biosciences"
     office                "MULTIDISCIPLINARY RESEARCH BUILDING"

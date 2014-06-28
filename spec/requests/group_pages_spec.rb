@@ -22,22 +22,39 @@ describe "Group pages" do
     let(:submit) { "New Group" }
 
     describe "with invalid information" do
+
       it "should not create a group" do
         expect { click_button submit }.not_to change(Group, :count)
       end
+
+      describe "after submission" do
+        before { click_button submit }
+
+        it { should have_title('New Group') }
+        it { should have_content('error') }
+      end
+
     end
 
     describe "with valid information" do
       before do
-        fill_in "Name",                 with: "Bioinformatics"
-        fill_in "Primary investigator", with: "1"
-        fill_in "Department",           with: "1"
-        fill_in "Office",               with: "1"
-        fill_in "Phone",                with: "1"
+        fill_in "Name",                 with: "Center for Bioinformatics"
+        fill_in "Primary investigator", with: "Ilya Vakser"
+        fill_in "Department",           with: "Bioinformatics"
+        fill_in "Office",               with: "MULTIDISCIPLINARY RESEARCH BUILDING"
+        fill_in "Phone",                with: "785-864-1057"
       end
 
       it "should create a group" do
         expect { click_button submit }.to change(Group, :count).by(1)
+      end
+
+      describe "after saving the group" do
+        before { click_button submit }
+        let(:group) { Group.find_by(name: 'Center for Bioinformatics'.downcase) }
+
+        it { should have_title(group.name) }
+        it { should have_selector('div.alert.alert-success', text: 'Congratulations') }
       end
 
     end

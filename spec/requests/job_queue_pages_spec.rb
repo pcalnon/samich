@@ -28,9 +28,18 @@ describe "JobQueue pages" do
     let(:submit) { "New Job Queue" }
 
     describe "with invalid information" do
+
       it "should not create a job queue" do
         expect { click_button submit }.not_to change(JobQueue, :count)
       end
+
+      describe "after submission" do
+        before { click_button submit }
+
+        it { should have_title('New Job Queue') }
+        it { should have_content('error') }
+      end
+
     end
 
     describe "with valid information" do
@@ -52,6 +61,15 @@ describe "JobQueue pages" do
       it "should create a job queue" do
         expect { click_button submit }.to change(JobQueue, :count).by(1)
       end
+
+      describe "after saving the job queue" do
+        before { click_button submit }
+        let(:job_queue) {JobQueue.find_by(name: 'long') }
+
+        it { should have_title(job_queue.name) }
+        it { should have_selector('div.alert.alert-success', text: 'Congratulations') }
+      end
+
 
     end
 

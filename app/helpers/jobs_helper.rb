@@ -14,6 +14,7 @@ module JobsHelper
       f.each do |line|
 
   #      job_id = 
+        puts line
 
       end
 
