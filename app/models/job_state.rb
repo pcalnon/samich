@@ -1,8 +1,9 @@
-class JobStatus < ActiveRecord::Base
+class JobState < ActiveRecord::Base
   validates(:job_id, presence: true, uniqueness: true)
   validates(:user_id, presence: true)
   validates(:queue_id, presence: true)
   validates(:name, presence: true)
+  validates(:status, presence: true)
   validates(:nodes_requested, presence: true)
   validates(:cores_requested, presence: true)
   validates(:memory_requested, presence: true)

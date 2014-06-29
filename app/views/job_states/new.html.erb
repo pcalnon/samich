@@ -1,0 +1,70 @@
+<% provide(:title, "Job Status") %>
+<h1>Job Status</h1>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@job_state) do |f| %>
+      <%= render 'shared/job_state_error_messages' %>
+
+
+      <%= f.label :job_id %>
+      <%= f.text_field :job_id %>
+
+      <%= f.label :user_id %>
+      <%= f.number_field :user_id %>
+
+      <%= f.label :queue_id %>
+      <%= f.number_field :queue_id %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :status %>
+      <%= f.text_field :status %>
+
+
+      <%= f.label :nodes_requested %>
+      <%= f.text_field :nodes_requested %>
+
+      <%= f.label :cores_requested %>
+      <%= f.number_field :cores_requested %>
+
+      <%= f.label :attribute_requested %>
+      <%= f.number_field :attribute_requested %>
+
+      <%= f.label :memory_requested %>
+      <%= f.text_field :memory_requested %>
+
+      <%= f.label :walltime_requested %>
+      <%= f.text_field :walltime_requested %>
+
+      <%= f.label :submit_flags %>
+      <%= f.text_field :submit_flags %>
+
+      <%= f.label :node_list %>
+      <%= f.text_field :node_list %>
+
+      <%= f.label :nodes_used %>
+      <%= f.text_field :nodes_used %>
+
+      <%= f.label :cores_used %>
+      <%= f.number_field :cores_used %>
+
+      <%= f.label :memory_used %>
+      <%= f.text_field :memory_used %>
+
+      <%= f.label :walltime_used %>
+      <%= f.text_field :walltime_used %>
+
+      <%= f.label :submit_time %>
+      <%= f.text_field :submit_time %>
+
+      <%= f.label :start_time %>
+      <%= f.text_field :start_time %>
+
+      <%= f.label :completion_time %>
+      <%= f.text_field :completion_time %>
+
+      <%= f.submit "Job Status", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+

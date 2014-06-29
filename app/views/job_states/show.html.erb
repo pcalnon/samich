@@ -1,0 +1,16 @@
+<% provide(:title, @job_state.job_id) %>
+<h1>Job ID:  <%= @job_state.job_id %></h1>
+<h3><%= @job_state.name %></h3>
+<h3><%= @job_state.status %></h3>
+<%= @job_state.job_id %>, 
+<%= @job_state.user_id %>, 
+<%= @job_state.queue_id %>, 
+<%= @job_state.name %>, 
+<%= @job_state.status %>, 
+<%= @job_state.nodes_requested %>, <%= @job_state.cores_requested %>, <%= @job_state.attribute_requested %>, <%= @job_state.memory_requested %>, <%= @job_state.walltime_requested %>, 
+<%= @job_state.submit_flags %>, 
+<%= @job_state.node_list %>, 
+<%= @job_state.nodes_used %>, <%= @job_state.cores_used %>, <%= @job_state.memory_used %>, <%= @job_state.walltime_used %>, 
+<%= @job_state.submit_time %>, 
+<%= @job_state.start_time %>, 
+<%= @job_state.completion_time %>

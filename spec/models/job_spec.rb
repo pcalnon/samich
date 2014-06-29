@@ -30,11 +30,11 @@ describe Job do
 
   it { should be_valid }
 
-  describe "when job_id is not present" do
-    before { @job.job_id = " " }
-    it { should_not be_valid }
-  end
-
+#  describe "when job_id is not present" do
+#    before { @job.job_id = " " }
+#    it { should_not be_valid }
+#  end
+#
 #  describe "when job_id is already in use" do
 #    before do
 #      job_with_same_id = @job.dup
