@@ -1,0 +1,39 @@
+<% provide(:title, 'Edit Job Queue') %>
+<h1>Update the Job Queue</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@job_queue) do |f| %>
+      <%= render 'shared/job_queue_error_messages' %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :description %>
+      <%= f.text_field :description %>
+
+      <%= f.label :walltime_default %>
+      <%= f.text_field :walltime_default %>
+
+      <%= f.label :walltime_minimum %>
+      <%= f.text_field :walltime_minimum %>
+
+      <%= f.label :walltime_maximum %>
+      <%= f.text_field :walltime_maximum %>
+
+      <%= f.label :memory_default %>
+      <%= f.text_field :memory_default %>
+
+      <%= f.label :memory_maximum %>
+      <%= f.text_field :memory_maximum %>
+
+      <%= f.label :cores_default %>
+      <%= f.text_field :cores_default %>
+
+      <%= f.label :cores_maximum %>
+      <%= f.text_field :cores_maximum %>
+
+      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>

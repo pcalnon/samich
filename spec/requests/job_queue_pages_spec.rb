@@ -75,4 +75,20 @@ describe "JobQueue pages" do
 
   end
 
+  describe "edit job queue" do
+    let(:job_queue) { FactoryGirl.create(:job_queue) }
+    before { visit edit_job_queue_path(job_queue) }
+
+    describe "page" do
+      it { should have_content("Update the Job Queue") }
+      it { should have_title("Edit Job Queue") }
+    end
+
+    describe "with invalid information" do
+      before { click_button "Save changes" }
+
+      it { should have_content('error') }
+    end
+  end
+
 end
