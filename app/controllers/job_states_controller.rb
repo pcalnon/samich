@@ -1,7 +1,14 @@
 class JobStatesController < ApplicationController
+  #before_action :signed_in_user, only: [:create, :edit, :update]
+
+
+  def index
+    user = current_user
+    @job_running_list = view_context.find_jobs(user, "running")
+    @job_idle_list    = view_context.find_jobs(user, "idle")
+  end
 
   def show
-    #@job_state = JobState.find(params[:job_id])
     @job_state = JobState.find(params[:id])
   end
 
@@ -19,9 +26,18 @@ class JobStatesController < ApplicationController
     end
   end
 
+
   private
     def job_state_params
       params.require(:job_state).permit(:job_id, :user_id, :queue_id, :name, :status, :nodes_requested, :cores_requested, :attribute_requested, :memory_requested, :walltime_requested, :submit_flags, :node_list, :submit_time)
+    end
+
+    # Before filters
+    def signed_in_user
+      unless signed_in?
+        store_location
+        redirect_to signin_url, notice: "Please sign in to the Samich." unless signed_in?
+      end
     end
 
 end

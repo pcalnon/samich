@@ -4,6 +4,25 @@ describe "Group pages" do
 
   subject { page } 
 
+  describe "index" do
+    before do
+      sign_in FactoryGirl.create(:user)
+      FactoryGirl.create(:group, name: "queue stuffers 1", primary_investigator: "Donny Vascoe",  department: "physics",     office: " ", phone: " ")
+      FactoryGirl.create(:group, name: "queue stuffers 2", primary_investigator: "Victor Vitto",  department: "astronomy",   office: " ", phone: " ")
+      FactoryGirl.create(:group, name: "queue stuffers 3", primary_investigator: "Bridget Jones", department: "mathematics", office: " ", phone: " ")
+      visit groups_path
+    end
+
+    it { should have_title('All Groups') }
+    it { should have_content('All Groups') }
+
+    it "should list each group" do
+      Group.all.each do |group|
+        expect(page).to have_selector('li', text: group.name)
+      end
+    end
+  end
+
   describe "group profile page" do
     let(:group) { FactoryGirl.create(:group) }
     before { visit group_path(group) }
@@ -63,15 +82,37 @@ describe "Group pages" do
 
   describe "edit group" do
     let(:group) { FactoryGirl.create(:group) }
+    let(:user) { FactoryGirl.create(:user) }
 
     before do
       sign_in user
+      #sign_in user, no_capybara: true 
       visit edit_group_path(group)
     end
 
     describe "page" do
       it { should have_content("Update the Group") }
       it { should have_title("Edit Group") }
+    end
+
+    describe "with invalid information" do
+      let(:bogo_name)                 { " " }
+      let(:bogo_primary_investigator) { " " }
+      let(:bogo_department)           { " " }
+      let(:bogo_office)               { " " }
+      let(:bogo_phone)                { " " }
+
+      before do
+        fill_in "Name",                 with: bogo_name
+        fill_in "Primary investigator", with: bogo_primary_investigator
+        fill_in "Department",           with: bogo_department
+        fill_in "Office",               with: bogo_office
+        fill_in "Phone",                with: bogo_phone
+
+        click_button "Save changes"
+      end
+
+      it { should have_content('error') }
     end
 
 
@@ -82,8 +123,8 @@ describe "Group pages" do
       let(:new_department)           { "Other Department" }
       let(:new_office)               { "Somewhere Else" }
       let(:new_phone)                { "785-867-5309" }
-      before do
 
+      before do
         fill_in "Name",                 with: new_name
         fill_in "Primary investigator", with: new_primary_investigator
         fill_in "Department",           with: new_department
@@ -92,21 +133,14 @@ describe "Group pages" do
         click_button "Save changes"
       end
 
-      it { should have_title(new_name) }
+      it { should have_title(new_name.downcase) }
       it { should have_selector('div.alert.alert-success') }
-      it { should have_link('Sign out', href: signout_path) }
-      specify { expect(group.reload.name).to                  eq new_name }
+      #it { should have_link('Sign out', href: signout_path) }
+      specify { expect(group.reload.name).to                  eq new_name.downcase }
       specify { expect(group.reload.primary_investigator).to  eq new_primary_investigator }
       specify { expect(group.reload.department).to            eq new_department }
       specify { expect(group.reload.office).to                eq new_office }
       specify { expect(group.reload.phone).to                 eq new_phone }
-    end
-
-
-    describe "with invalid information" do
-      before { click_button "Save changes" }
-
-      it { should have_content('error') }
     end
 
   end

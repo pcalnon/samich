@@ -1,0 +1,9 @@
+<% provide(:title, 'All Job Queues') %>
+<h1>All Job Queues</h1>
+
+<ul class="job_queues">
+  <% @job_queues.each do |job_queue| %>
+    <li>
+      <%= link_to job_queue.name, job_queue %>
+  <% end %>
+</ul>

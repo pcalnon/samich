@@ -1,0 +1,35 @@
+<% provide(:title, 'Job Status') %>
+<h1></h1>
+
+<ul class="job_states">
+  <li>
+    <pre>
+      <h3>Running Jobs:</h3>
+      <% @job_running_list.each do |job_state_raw| %>
+        <% job_state = job_state_raw.gsub(/\n/,'') %>
+        <% if !( job_state.nil? || job_state.empty? ) %>
+          <% if !( job_state.include? "ProxyChains" ) %>
+            <%if !( job_state.include? "fusion:" ) %>
+<%= job_state %> 
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </pre>
+  </li>
+  <li>
+    <pre>
+      <h3>Queued Jobs:</h3>
+      <% @job_idle_list.each do |job_state_raw| %>
+        <% job_state = job_state_raw.gsub(/\n/,'') %>
+        <% if !( job_state.nil? || job_state.empty? ) %>
+          <% if !( job_state.include? "ProxyChains" ) %>
+            <%if !( job_state.include? "fusion:" ) %>
+<%= job_state %> 
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </pre>
+  </li>
+</ul>

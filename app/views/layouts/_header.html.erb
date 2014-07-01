@@ -6,9 +6,39 @@
       <nav>
         <ul class="nav pull-right">
           <li><%= link_to "Home", root_path %></li>
-          <li><%= link_to "Help", help_path %></li>
           <% if signed_in? %>
-            <li><%= link_to "Users", '#' %></li>
+            <li id="fat-menu" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Resources <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="https://acf.ku.edu/" alt="ACF Home">ACF Home</a></li>
+                <li><a href="http://ganglia.acf.ku.edu/" alt="Ganglia, Cluster Status">Ganglia Status</a></li>
+                <li><a href="http://xdmod.acf.ku.edu/index.php" alt="XDMod, Cluster Usage Reporting">XDMod Reporting</a></li>
+                <li><a href="http://ittc.ku.edu/cluster/acf_cluster_hardware.html" alt="Cluster Hardware">Cluster Hardware</a></li>
+                <li class="divider"></li>
+                <li><a href="https://acf.ku.edu/wiki/index.php/Main_Page" alt="ACF Wiki">ACF Wiki Home</a></li>
+                <li><a href="https://acf.ku.edu/wiki/index.php/Main_Page#Job_Submission" alt="Job Submission and PBS Scripts">Job Submission</a></li>
+                <li><a href="https://acf.ku.edu/wiki/index.php/Main_Page#Software_compilation" alt="Code Compilation and Compilers">Compilation</a></li>
+                <li><a href="https://acf.ku.edu/wiki/index.php/Main_Page#Queues" alt="Job Submission Queues">Job Queues</a></li>
+                <li><a href="https://acf.ku.edu/wiki/index.php/Main_Page#GPU_jobs" alt="Guide to GPGPU Jobs">GPGPU Jobs</a></li>
+                <li><a href="https://acf.ku.edu/wiki/index.php/Main_Page#GUI_and_remote_desktop_support" alt="Graphical Sessions, Howto">Graphical Session</a></li>
+                <li><a href="https://acf.ku.edu/wiki/index.php/Main_Page#Application_Support" alt="Cluster Software Inventory and Use">Software</a></li>
+                <li class="divider"></li>
+                <li><a href="https://galaxy.acf.ku.edu/" alt="Galaxy at the ACF">Galaxy</a></li>
+                <li><a href="https://www.globus.org/" alt="Globus at the ACF">Globus</a></li>
+              </ul>
+            </li>
+            <li id="fat-menu" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Manage <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Submit Jobs", submit_job_path %></li>
+                <li><%= link_to "Monitor Jobs", job_states_path %></li>
+                <li class="divider"></li>
+                <li><%= link_to "Users", users_path %></li>
+                <li><%= link_to "Groups", groups_path %></li>
+                <li class="divider"></li>
+                <li><%= link_to "Queues", job_queues_path %></li>
+              </ul>
+            </li>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Account <b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -23,6 +53,7 @@
           <% else %>
             <li><%= link_to "Sign in", signin_path %></li>
           <% end %>
+          <li><%= link_to "Help", help_path %></li>
         </ul>
       </nav>
     </div>

@@ -1,4 +1,10 @@
 class GroupsController < ApplicationController
+  before_action :signed_in_user, only: [:create, :edit, :update]
+  #before_action :correct_user,   only: [:create, :edit, :update]
+
+  def index
+    @groups = Group.all
+  end
 
   def show
     @group = Group.find(params[:id])
@@ -25,7 +31,6 @@ class GroupsController < ApplicationController
   def update
     @group = Group.find(params[:id])
     if @group.update_attributes(group_params)
-      # Handle a successful update.
       flash[:success] = "Thank you for updating the group.  Take another bite of the Samich!"
       redirect_to @group
     else
@@ -38,4 +43,17 @@ class GroupsController < ApplicationController
       params.require(:group).permit(:name, :primary_investigator, :department, :office, :phone)
     end
 
+    # Before filters
+    def signed_in_user
+      unless signed_in?
+        store_location
+        redirect_to signin_url, notice: "Please sign in to the Samich." unless signed_in?
+      end
+    end
+
+    #def correct_user
+    #  #@user = User.find(params[:id])
+    #  @user = current_user
+    #  redirect_to(root_url) unless current_user?(@user)
+    #end
 end

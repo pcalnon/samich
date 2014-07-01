@@ -1,5 +1,11 @@
 class JobsController < ApplicationController
 
+  def index
+    #get_jobs @jobs
+    @jobs = Job.all
+    #@jobs = Job.find(params[:user_id])
+  end
+
   def show
     @job = Job.find(params[:id])
   end

@@ -8,27 +8,33 @@ Rails.application.routes.draw do
   #
   root  'static_pages#home'
   #
-  match '/signup',           to: 'users#new',            via: 'get'
-  match '/profile',          to: 'users#edit',           via: 'get'
+  match '/signup',            to: 'users#new',            via: 'get'
+  match '/profile',           to: 'users#edit',           via: 'get'
   #
-  match '/signin',           to: 'sessions#new',         via: 'get'
-  match '/signout',          to: 'sessions#destroy',     via: 'delete'
+  match '/signin',            to: 'sessions#new',         via: 'get'
+  match '/signout',           to: 'sessions#destroy',     via: 'delete'
   #
-  match '/create_job',       to: 'jobs#new',             via: 'get'
-  match '/submit_job',       to: 'jobs#new',             via: 'get'
+  match '/create_job',        to: 'jobs#new',             via: 'get'
+  match '/submit_job',        to: 'jobs#new',             via: 'get'
   #
-  match '/job_status',       to: 'job_states#new',       via: 'get'
-  match '/job_state',        to: 'job_states#new',       via: 'get'
+  match '/job_status',        to: 'job_states#new',       via: 'get'
+  match '/job_state',         to: 'job_states#new',       via: 'get'
   #
-  match '/create_group',     to: 'groups#new',           via: 'get'
-  match '/edit_group',       to: 'groups#edit',          via: 'get'
+  match '/create_group',      to: 'groups#new',           via: 'get'
+  match '/create_groups',     to: 'groups#new',           via: 'get'
+  match '/edit_group',        to: 'groups#edit',          via: 'get'
+  match '/edit_groups',       to: 'groups#edit',          via: 'get'
   #
-  match '/create_job_queue', to: 'job_queues#new',       via: 'get'
-  match '/edit_job_queue',   to: 'job_queues#edit',      via: 'get'
+  match '/create_job_queue',  to: 'job_queues#new',       via: 'get'
+  match '/create_job_queues', to: 'job_queues#new',       via: 'get'
+  match '/edit_job_queue',    to: 'job_queues#edit',      via: 'get'
+  match '/edit_job_queues',   to: 'job_queues#edit',      via: 'get'
   #
-  match '/help',             to: 'static_pages#help',    via: 'get'
-  match '/about',            to: 'static_pages#about',   via: 'get'
-  match '/contact',          to: 'static_pages#contact', via: 'get'
+  match '/help',              to: 'static_pages#help',    via: 'get'
+  match '/about',             to: 'static_pages#about',   via: 'get'
+  match '/contact',           to: 'static_pages#contact', via: 'get'
+  match '/contact',           to: 'static_pages#contact', via: 'get'
+  #
   #
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

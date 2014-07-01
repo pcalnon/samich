@@ -4,6 +4,25 @@ describe "User pages" do
 
   subject { page }
 
+  describe "index" do
+    before do
+      sign_in FactoryGirl.create(:user)
+      FactoryGirl.create(:user, name: "Victor Vitto", username: "vvitto",  email: "vvitto@ittc.ku.edu")
+      FactoryGirl.create(:user, name: "Donny Vascoe", username: "dvascoe", email: "dvascoe@ittc.ku.edu")
+      FactoryGirl.create(:user, name: "Bridget Jones", username: "bjones", email: "bjones@ittc.ku.edu")
+      visit users_path
+    end
+
+    it { should have_title('All users') }
+    it { should have_content('All users') }
+
+    it "should list each user" do
+      User.all.each do |user|
+        expect(page).to have_selector('li', text: user.name)
+      end
+    end
+  end
+
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
     before { visit user_path(user) }
@@ -90,6 +109,12 @@ describe "User pages" do
       it { should have_link('change', href: 'http://gravatar.com/emails') }
     end
 
+    describe "with invalid information" do
+      before { click_button "Save changes" }
+
+      it { should have_content('error') }
+    end
+
     describe "with valid information" do
       let(:new_name)      { "New Name" }
       let(:new_username)  { "UsernameNew" }
@@ -99,7 +124,7 @@ describe "User pages" do
         fill_in "Username",         with: new_username
         fill_in "Email",            with: new_email
         fill_in "Password",         with: user.password
-        fill_in "Confirm Password", with: user.password
+        fill_in "Confirmation",     with: user.password
         click_button "Save changes"
       end
 
@@ -107,14 +132,8 @@ describe "User pages" do
       it { should have_selector('div.alert.alert-success') }
       it { should have_link('Sign out', href: signout_path) }
       specify { expect(user.reload.name).to      eq new_name }
-      specify { expect(user.reload.username).to  eq new_username }
+      specify { expect(user.reload.username).to  eq new_username.downcase }
       specify { expect(user.reload.email).to     eq new_email }
-    end
-
-    describe "with invalid information" do
-      before { click_button "Save changes" }
-
-      it { should have_content('error') }
     end
 
   end
