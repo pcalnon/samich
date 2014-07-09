@@ -7,6 +7,7 @@ class Job < ActiveRecord::Base
   validates(:cores_requested, presence: true)
   validates(:memory_requested, presence: true)
   validates(:walltime_requested, presence: true)
-  validates(:node_list, presence: true)
-  validates(:submit_time, presence: true)
+  #validates(:node_list, presence: true)
+  #validates(:submit_time, presence: true)
+  validates(:script, presence: true)
 end
