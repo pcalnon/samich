@@ -3,33 +3,123 @@
 
 <ul class="job_states">
   <li>
-    <pre>
-      <h3>Running Jobs:</h3>
-      <% @job_running_list.each do |job_state_raw| %>
-        <% job_state = job_state_raw.gsub(/\n/,'') %>
-        <% if !( job_state.nil? || job_state.empty? ) %>
-          <% if !( job_state.include? "ProxyChains" ) %>
-            <%if !( job_state.include? "fusion:" ) %>
-<%= job_state %> 
+    <h3>Running Jobs for &nbsp;<%= link_to current_user.username, current_user %></h3><h4><%= "( " + @job_running_qstat + ")" %></h4>
+    <% if !(@job_running_list.nil? || @job_running_list.empty?) %>
+      <pre>
+        <% @job_running_list.split("\n").each do |job_state_raw| %>
+          <% job_state = job_state_raw.gsub(/\n/,'') %>
+          <% if !( job_state.nil? || job_state.empty? ) %>
+            <% if !( job_state.include? "ProxyChains" ) %>
+              <%if !( job_state.include? "fusion:" ) %>
+                <% if job_state.include? ".fusion" %>
+                  <% job_id = job_state.split('.').first %>
+                  <% job_state = job_state.gsub(/#{Regexp.escape(job_id + ".")}/, ".") %>
+                  <% @job = Job.find_by( job_id: job_id ) %>
+<%= link_to job_id, job_info_path( :job_id => job_id ) %><%= job_state %>
+                <% else %>
+<%= job_state %>
+                <% end %>
+              <% end %>
             <% end %>
           <% end %>
         <% end %>
-      <% end %>
-    </pre>
+      </pre>
+    <% end %>
   </li>
   <li>
-    <pre>
-      <h3>Queued Jobs:</h3>
-      <% @job_idle_list.each do |job_state_raw| %>
-        <% job_state = job_state_raw.gsub(/\n/,'') %>
-        <% if !( job_state.nil? || job_state.empty? ) %>
-          <% if !( job_state.include? "ProxyChains" ) %>
-            <%if !( job_state.include? "fusion:" ) %>
-<%= job_state %> 
+    <h3>Queued Jobs for &nbsp;<%= link_to current_user.username, current_user %></h3><h4><%= "( " + @job_idle_qstat + ")" %></h4>
+    <% if !(@job_idle_list.nil? || @job_idle_list.empty?) %>
+      <pre>
+        <% @job_idle_list.split("\n").each do |job_state_raw| %>
+          <% job_state = job_state_raw.gsub(/\n/,'') %>
+          <% if !( job_state.nil? || job_state.empty? ) %>
+            <% if !( job_state.include? "ProxyChains" ) %>
+              <%if !( job_state.include? "fusion:" ) %>
+                <% if job_state.include? ".fusion" %>
+                  <% job_id = job_state.split('.').first %>
+                  <% job_state = job_state.gsub(/#{Regexp.escape(job_id + ".")}/, ".") %>
+                  <% @job = Job.find_by( job_id: job_id ) %>
+<%= link_to job_id, job_info_path( :job_id => job_id ) %><%= job_state %>
+                <% else %>
+<%= job_state %>
+                <% end %>
+              <% end %>
             <% end %>
           <% end %>
         <% end %>
-      <% end %>
-    </pre>
+      </pre>
+    <% end %>
+  </li>
+  <li>
+    <h3>Completed Jobs for &nbsp;<%= link_to current_user.username, current_user %></h3><h4><%= "( " + @job_complete_qstat + ")" %></h4>
+    <% if !(@job_complete_list.nil? || @job_complete_list.empty?) %>
+      <pre>
+        <% @job_complete_list.split("\n").each do |job_state_raw| %>
+          <% job_state = job_state_raw.gsub(/\n/,'') %>
+          <% if !( job_state.nil? || job_state.empty? ) %>
+            <% if !( job_state.include? "ProxyChains" ) %>
+              <%if !( job_state.include? "fusion:" ) %>
+                <% if job_state.include? ".fusion" %>
+                  <% job_id = job_state.split('.').first %>
+                  <% job_state = job_state.gsub(/#{Regexp.escape(job_id + ".")}/, ".") %>
+                  <% @job = Job.find_by( job_id: job_id ) %>
+<%= link_to job_id, job_info_path( :job_id => job_id ) %><%= job_state %>
+                <% else %>
+<%= job_state %>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </pre>
+    <% end %>
+  </li>
+  <li>
+    <h3>Held Jobs for &nbsp;<%= link_to current_user.username, current_user %></h3><h4><%= "( " + @job_held_qstat + ")" %></h4>
+    <% if !(@job_held_list.nil? || @job_held_list.empty?) %>
+      <pre>
+        <% @job_held_list.split("\n").each do |job_state_raw| %>
+          <% job_state = job_state_raw.gsub(/\n/,'') %>
+          <% if !( job_state.nil? || job_state.empty? ) %>
+            <% if !( job_state.include? "ProxyChains" ) %>
+              <%if !( job_state.include? "fusion:" ) %>
+                <% if job_state.include? ".fusion" %>
+                  <% job_id = job_state.split('.').first %>
+                  <% job_state = job_state.gsub(/#{Regexp.escape(job_id + ".")}/, ".") %>
+                  <% @job = Job.find_by( job_id: job_id ) %>
+<%= link_to job_id, job_info_path( :job_id => job_id ) %><%= job_state %>
+                <% else %>
+<%= job_state %>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </pre>
+    <% end %>
+  </li>
+  <li>
+    <h3>Error Jobs for &nbsp;<%= link_to current_user.username, current_user %></h3><h4><%= "( " + @job_error_qstat + ")" %></h4>
+    <% if !(@job_error_list.nil? || @job_error_list.empty?) %>
+      <pre>
+        <% @job_error_list.split("\n").each do |job_state_raw| %>
+          <% job_state = job_state_raw.gsub(/\n/,'') %>
+          <% if !( job_state.nil? || job_state.empty? ) %>
+            <% if !( job_state.include? "ProxyChains" ) %>
+              <%if !( job_state.include? "fusion:" ) %>
+                <% if job_state.include? ".fusion" %>
+                  <% job_id = job_state.split('.').first %>
+                  <% job_state = job_state.gsub(/#{Regexp.escape(job_id + ".")}/, ".") %>
+                  <% @job = Job.find_by( job_id: job_id ) %>
+<%= link_to job_id, job_info_path( :job_id => job_id ) %><%= job_state %>
+                <% else %>
+<%= job_state %>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </pre>
+    <% end %>
   </li>
 </ul>

@@ -1,16 +1,45 @@
-<% provide(:title, @job_state.job_id) %>
-<h1>Job ID:  <%= @job_state.job_id %></h1>
-<h3><%= @job_state.name %></h3>
-<h3><%= @job_state.status %></h3>
-<%= @job_state.job_id %>, 
-<%= @job_state.user_id %>, 
-<%= @job_state.queue_id %>, 
-<%= @job_state.name %>, 
-<%= @job_state.status %>, 
-<%= @job_state.nodes_requested %>, <%= @job_state.cores_requested %>, <%= @job_state.attribute_requested %>, <%= @job_state.memory_requested %>, <%= @job_state.walltime_requested %>, 
-<%= @job_state.submit_flags %>, 
-<%= @job_state.node_list %>, 
-<%= @job_state.nodes_used %>, <%= @job_state.cores_used %>, <%= @job_state.memory_used %>, <%= @job_state.walltime_used %>, 
-<%= @job_state.submit_time %>, 
-<%= @job_state.start_time %>, 
-<%= @job_state.completion_time %>
+<% @job = Job.find_by( job_id: params[:job_id] ) %>
+<% provide(:title, @job.job_id) %>
+
+<% @job_state = find_job_info( params[:job_id] ) %>
+<% if ( @job_state.nil? || @job_state.empty? ) %>
+<% else %>
+<% end %>
+
+
+<h1>Job ID:  <%= @job.job_id %></h1>
+<h3>Job Name: &nbsp; <b><%= @job.name %></b></h3>
+<h3>Submit Time: &nbsp; <b><%= @job.submit_time %></b></h3>
+
+<pre>
+  <% @job.qstat_info.split("\n").each do |job_qstat_raw| %>
+    <% job_qstat = job_qstat_raw.gsub(/\n/,'') %>
+    <% if !( job_qstat.nil? || job_qstat.empty? ) %>
+      <% if !( job_qstat.include? "ProxyChains" ) %>
+<%= job_qstat %>
+      <% end %>
+    <% end %>
+  <% end %>
+</pre>
+
+<!-- 
+< %= @job_state.job_id %>, 
+< %= @job_state.user_id %>, 
+< %= @job_state.queue_id %>, 
+< %= @job_state.name %>, 
+< %= @job_state.status %>, 
+< %= @job_state.nodes_requested %>, 
+< %= @job_state.cores_requested %>, 
+< %= @job_state.attribute_requested %>, 
+< %= @job_state.memory_requested %>, 
+< %= @job_state.walltime_requested %>, 
+< %= @job_state.submit_flags %>, 
+< %= @job_state.node_list %>, 
+< %= @job_state.nodes_used %>, 
+< %= @job_state.cores_used %>, 
+< %= @job_state.memory_used %>, 
+< %= @job_state.walltime_used %>, 
+< %= @job_state.submit_time %>, 
+< %= @job_state.start_time %>, 
+< %= @job_state.completion_time %>
+-->

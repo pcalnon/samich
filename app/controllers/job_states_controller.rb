@@ -4,12 +4,32 @@ class JobStatesController < ApplicationController
 
   def index
     user = current_user
-    @job_running_list = view_context.find_jobs(user, "running")
-    @job_idle_list    = view_context.find_jobs(user, "idle")
+    @job_running_out    = view_context.find_jobs("running" , user)
+    @job_running_qstat  = @job_running_out.split('~|~').first
+    @job_running_list   = @job_running_out.split('~|~').last
+
+    @job_idle_out       = view_context.find_jobs("idle"    , user)
+    @job_idle_qstat     = @job_idle_out.split('~|~').first
+    @job_idle_list      = @job_idle_out.split('~|~').last
+
+    @job_complete_out   = view_context.find_jobs("complete", user)
+    @job_complete_qstat = @job_complete_out.split('~|~').first
+    @job_complete_list  = @job_complete_out.split('~|~').last
+
+    @job_held_out       = view_context.find_jobs("held"    , user)
+    @job_held_qstat     = @job_held_out.split('~|~').first
+    @job_held_list      = @job_held_out.split('~|~').last
+
+    @job_error_out      = view_context.find_jobs("error"   , user)
+    @job_error_qstat    = @job_error_out.split('~|~').first
+    @job_error_list     = @job_error_out.split('~|~').last
   end
 
   def show
-    @job_state = JobState.find(params[:id])
+    @job_state = view_context.find_job_info( params[:job_id] )
+    #@job_state = view_context.find_job_info( job_id )
+    #@job_state = JobState.find_by(@job.job_id)
+    #@job_state = JobState.find(params[:id])
   end
 
   def new

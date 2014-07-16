@@ -1,14 +1,54 @@
-<% provide(:title, @job.job_id) %>
-<h1>Job ID:  <%= @job.job_id %></h1>
-<h3><%= @job.name %></h3>
-<%= @job.job_id %>, 
-<%= @job.user_id %>, 
-<%= @job.queue_id %>, 
-<%= @job.name %>, 
-<%= @job.nodes_requested %>, <%= @job.cores_requested %>, <%= @job.attribute_requested %>, <%= @job.memory_requested %>, <%= @job.walltime_requested %>, 
-<%= @job.submit_flags %>, 
-<%= @job.node_list %>, 
-<%= @job.nodes_used %>, <%= @job.cores_used %>, <%= @job.memory_used %>, <%= @job.walltime_used %>, 
-<%= @job.submit_time %>, 
-<%= @job.start_time %>, 
-<%= @job.completion_time %>
+<% provide(:title, "Job " + @job.job_id) %>
+<h1>Cluster Job</h1>
+<h2>Job ID: &nbsp; <%= @job.job_id %></h1>
+
+<div>
+Your cluster job was submitted with the following command:<br>
+<%= @job.qsub_command %>
+</div>
+<br>
+
+<div class="row">
+  <div class="span6 offset3">
+
+    <ul class="jobs">
+      <li class="jobs" id="label"  >Job ID:</li>
+      <li class="jobs" id="content"><%= @job.job_id%>&nbsp;</li>
+      <li class="jobs" id="label"  >User ID:</li>
+      <li class="jobs" id="content"><%= @job.user_id %>&nbsp;</li>
+      <li class="jobs" id="label"  >Queue:</li>
+      <li class="jobs" id="content"><%= job_queue = JobQueue.find(@job.queue_id).name %>&nbsp;</li>
+      <li class="jobs" id="label"  >Job Name:</li>
+      <li class="jobs" id="content"><%= @job.name %>&nbsp;</li>
+      <li class="jobs" id="label"  >Nodes Requested:</li>
+      <li class="jobs" id="content"><%= @job.nodes_requested %>&nbsp;</li>
+      <li class="jobs" id="label"  >Cores Requested:</li>
+      <li class="jobs" id="content"><%= @job.cores_requested %>&nbsp;</li>
+      <li class="jobs" id="label"  >Attributes Requested:</li>
+      <li class="jobs" id="content"><%= @job.attribute_requested %>&nbsp;</li>
+      <li class="jobs" id="label"  >Memory Requested:</li>
+      <li class="jobs" id="content"><%= @job.memory_requested %>&nbsp;</li>
+      <li class="jobs" id="label"  >Walltime Requested:</li>
+      <li class="jobs" id="content"><%= @job.walltime_requested %>&nbsp;</li>
+      <li class="jobs" id="label"  >Submit Flags:</li>
+      <li class="jobs" id="content"><%= @job.submit_flags %>&nbsp;</li>
+      <li class="jobs" id="label"  >Node List:</li>
+      <li class="jobs" id="content"><%= @job.node_list %>&nbsp;</li>
+      <li class="jobs" id="label"  >Nodes Used:</li>
+      <li class="jobs" id="content"><%= @job.nodes_used %>&nbsp;</li>
+      <li class="jobs" id="label"  >Cores Used:</li>
+      <li class="jobs" id="content"><%= @job.cores_used %>&nbsp;</li>
+      <li class="jobs" id="label"  >Memory Used:</li>
+      <li class="jobs" id="content"><%= @job.memory_used %>&nbsp;</li>
+      <li class="jobs" id="label"  >Walltime Used:</li>
+      <li class="jobs" id="content"><%= @job.walltime_used %>&nbsp;</li>
+      <li class="jobs" id="label"  >Submit Time:</li>
+      <li class="jobs" id="content"><%= @job.submit_time %>&nbsp;</li>
+      <li class="jobs" id="label"  >Start Time:</li>
+      <li class="jobs" id="content"><%= @job.start_time %>&nbsp;</li>
+      <li class="jobs" id="label"  >Completion Time:</li>
+      <li class="jobs" id="content"><%= @job.completion_time %>&nbsp;</li>
+    </ul>
+
+  <div>
+<div>

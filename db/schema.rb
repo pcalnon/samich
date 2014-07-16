@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140702175053) do
+ActiveRecord::Schema.define(version: 20140715171821) do
 
   create_table "groups", force: true do |t|
     t.string   "name"
@@ -87,6 +87,9 @@ ActiveRecord::Schema.define(version: 20140702175053) do
     t.datetime "updated_at"
     t.string   "attribute_requested"
     t.string   "script"
+    t.string   "qsub_command"
+    t.string   "pbs_script"
+    t.string   "qstat_info"
   end
 
   create_table "users", force: true do |t|

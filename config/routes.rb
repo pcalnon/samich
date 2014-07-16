@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   #
   match '/job_status',        to: 'job_states#new',       via: 'get'
   match '/job_state',         to: 'job_states#new',       via: 'get'
+  match '/job_info',          to: 'job_states#show',      via: 'get'
   #
   match '/create_group',      to: 'groups#new',           via: 'get'
   match '/create_groups',     to: 'groups#new',           via: 'get'
